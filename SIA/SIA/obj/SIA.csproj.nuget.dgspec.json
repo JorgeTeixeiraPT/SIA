@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\jo12t\\source\\repos\\SIA\\SIA\\SIA.csproj": {}
+    "C:\\Users\\jo12t\\Documents\\GitHub\\SIA\\SIA\\SIA\\SIA.csproj": {}
   },
   "projects": {
-    "C:\\Users\\jo12t\\source\\repos\\SIA\\SIA\\SIA.csproj": {
+    "C:\\Users\\jo12t\\Documents\\GitHub\\SIA\\SIA\\SIA\\SIA.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\jo12t\\source\\repos\\SIA\\SIA\\SIA.csproj",
+        "projectUniqueName": "C:\\Users\\jo12t\\Documents\\GitHub\\SIA\\SIA\\SIA\\SIA.csproj",
         "projectName": "SIA",
-        "projectPath": "C:\\Users\\jo12t\\source\\repos\\SIA\\SIA\\SIA.csproj",
+        "projectPath": "C:\\Users\\jo12t\\Documents\\GitHub\\SIA\\SIA\\SIA\\SIA.csproj",
         "packagesPath": "C:\\Users\\jo12t\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\jo12t\\source\\repos\\SIA\\SIA\\obj\\",
+        "outputPath": "C:\\Users\\jo12t\\Documents\\GitHub\\SIA\\SIA\\SIA\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

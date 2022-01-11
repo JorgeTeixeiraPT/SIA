@@ -31,7 +31,10 @@ namespace SIA.Controllers
             return View();
         }
 
-
+        public IActionResult Quadrante()
+        {
+            return View();
+        }
 
         public IActionResult Index()
         {
