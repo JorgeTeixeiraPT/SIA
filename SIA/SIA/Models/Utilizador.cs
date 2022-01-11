@@ -8,6 +8,7 @@ namespace SIA.Models
 {
     public class Utilizador
     {
+//Não sei se uso este ou o AspNetUsers (é presizo add Estado)
         [Key]
         public int Id { get; set; }
         public string Nome { get; set; }

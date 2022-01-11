@@ -335,3 +335,4 @@ C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Utiliza
 C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Utilizadors\Details.cshtml.g.cs
 C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Utilizadors\Edit.cshtml.g.cs
 C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Utilizadors\Index.cshtml.g.cs
+C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Home\Quadrante.cshtml.g.cs

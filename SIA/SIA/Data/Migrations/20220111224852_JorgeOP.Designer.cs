@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SIA.Data;
 
 namespace SIA.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220111224852_JorgeOP")]
+    partial class JorgeOP
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -257,7 +259,7 @@ namespace SIA.Data.Migrations
 
                     b.HasIndex("TecnicaId3");
 
-                    b.ToTable("Quadrante");
+                    b.ToTable("Quadrantes");
                 });
 
             modelBuilder.Entity("SIA.Models.Tecnica", b =>
@@ -272,7 +274,7 @@ namespace SIA.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Tecnica");
+                    b.ToTable("Tecnicas");
                 });
 
             modelBuilder.Entity("SIA.Models.Utilizador", b =>

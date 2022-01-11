@@ -14,5 +14,7 @@ namespace SIA.Data
         {
         }
         public DbSet<Utilizador> Utilizador { get; set; }
+        public DbSet<Tecnica> Tecnica { get; set; }
+        public DbSet<Quadrante> Quadrante { get; set; }
     }
 }
