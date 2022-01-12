@@ -13,5 +13,9 @@ namespace SIA.Models
         public string Nome { get; set; } = "Escreva neste quadrante";
         public int Pontuacao { get; set; } = 0;
         public string Cor { get; set; } = "Branco";
+
+        public int TecnicaId { get; set; }
+
+        public Tecnica Tecnica { get; set; }
     }
 }

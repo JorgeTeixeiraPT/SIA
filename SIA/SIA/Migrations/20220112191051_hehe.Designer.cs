@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SIA.Data;
 
-namespace SIA.Data.Migrations
+namespace SIA.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220112191051_hehe")]
+    partial class hehe
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -235,27 +237,12 @@ namespace SIA.Data.Migrations
                     b.Property<int>("Pontuacao")
                         .HasColumnType("int");
 
-                    b.Property<int?>("TecnicaId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TecnicaId1")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TecnicaId2")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("TecnicaId3")
+                    b.Property<int>("TecnicaId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TecnicaId");
-
-                    b.HasIndex("TecnicaId1");
-
-                    b.HasIndex("TecnicaId2");
-
-                    b.HasIndex("TecnicaId3");
 
                     b.ToTable("Quadrante");
                 });
@@ -270,7 +257,12 @@ namespace SIA.Data.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("UtilizadorId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UtilizadorId");
 
                     b.ToTable("Tecnica");
                 });
@@ -297,12 +289,7 @@ namespace SIA.Data.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("TecnicaId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TecnicaId");
 
                     b.ToTable("Utilizador");
                 });
@@ -360,41 +347,34 @@ namespace SIA.Data.Migrations
 
             modelBuilder.Entity("SIA.Models.Quadrante", b =>
                 {
-                    b.HasOne("SIA.Models.Tecnica", null)
-                        .WithMany("Quadrante1")
-                        .HasForeignKey("TecnicaId");
+                    b.HasOne("SIA.Models.Tecnica", "Tecnica")
+                        .WithMany("QuadrantesL")
+                        .HasForeignKey("TecnicaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.HasOne("SIA.Models.Tecnica", null)
-                        .WithMany("Quadrante2")
-                        .HasForeignKey("TecnicaId1");
-
-                    b.HasOne("SIA.Models.Tecnica", null)
-                        .WithMany("Quadrante3")
-                        .HasForeignKey("TecnicaId2");
-
-                    b.HasOne("SIA.Models.Tecnica", null)
-                        .WithMany("Quadrante4")
-                        .HasForeignKey("TecnicaId3");
-                });
-
-            modelBuilder.Entity("SIA.Models.Utilizador", b =>
-                {
-                    b.HasOne("SIA.Models.Tecnica", null)
-                        .WithMany("Dono")
-                        .HasForeignKey("TecnicaId");
+                    b.Navigation("Tecnica");
                 });
 
             modelBuilder.Entity("SIA.Models.Tecnica", b =>
                 {
-                    b.Navigation("Dono");
+                    b.HasOne("SIA.Models.Utilizador", "Utilizador")
+                        .WithMany("TecnicaL")
+                        .HasForeignKey("UtilizadorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
-                    b.Navigation("Quadrante1");
+                    b.Navigation("Utilizador");
+                });
 
-                    b.Navigation("Quadrante2");
+            modelBuilder.Entity("SIA.Models.Tecnica", b =>
+                {
+                    b.Navigation("QuadrantesL");
+                });
 
-                    b.Navigation("Quadrante3");
-
-                    b.Navigation("Quadrante4");
+            modelBuilder.Entity("SIA.Models.Utilizador", b =>
+                {
+                    b.Navigation("TecnicaL");
                 });
 #pragma warning restore 612, 618
         }

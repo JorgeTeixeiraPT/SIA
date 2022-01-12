@@ -31,8 +31,9 @@ namespace SIA.Controllers
             return View();
         }
 
-        public IActionResult Quadrante()
+        public IActionResult Tecnicas()
         {
+           
             return View();
         }
 

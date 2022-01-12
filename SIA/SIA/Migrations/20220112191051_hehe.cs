@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace SIA.Data.Migrations
+namespace SIA.Migrations
 {
-    public partial class addUtilizadoresVF : Migration
+    public partial class hehe : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
