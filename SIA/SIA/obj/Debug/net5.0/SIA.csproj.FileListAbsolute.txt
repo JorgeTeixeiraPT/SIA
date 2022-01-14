@@ -335,8 +335,14 @@ C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Utiliza
 C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Utilizadors\Details.cshtml.g.cs
 C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Utilizadors\Edit.cshtml.g.cs
 C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Utilizadors\Index.cshtml.g.cs
+C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Quadrantes\Create.cshtml.g.cs
+C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Quadrantes\Delete.cshtml.g.cs
+C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Quadrantes\Details.cshtml.g.cs
+C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Quadrantes\Edit.cshtml.g.cs
+C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Quadrantes\Index.cshtml.g.cs
 C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Tecnicas\Create.cshtml.g.cs
 C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Tecnicas\Delete.cshtml.g.cs
 C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Tecnicas\Details.cshtml.g.cs
 C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Tecnicas\Edit.cshtml.g.cs
 C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Tecnicas\Index.cshtml.g.cs
+C:\Users\jo12t\Documents\GitHub\SIA\SIA\SIA\obj\Debug\net5.0\Razor\Views\Tecnicas\CreateMain.cshtml.g.cs

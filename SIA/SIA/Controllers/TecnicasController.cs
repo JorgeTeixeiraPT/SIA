@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using SIA.Data;
 using SIA.Models;
 
+
 namespace SIA.Controllers
 {
     public class TecnicasController : Controller
@@ -25,6 +26,35 @@ namespace SIA.Controllers
             var applicationDbContext = _context.Tecnica.Include(t => t.Utilizador);
             return View(await applicationDbContext.ToListAsync());
         }
+
+
+        public IActionResult CreateMain()
+        {
+            ViewData["UtilizadorId"] = new SelectList(_context.Utilizador, "Id", "Id");
+            return View() ;
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> CreateMain([Bind("Id,Nome,UtilizadorId")] Tecnica tecnica, [Bind("Id,Nome,Pontuacao,Cor,TecnicaId")] Quadrante Quadrante2)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Add(tecnica);
+                await _context.SaveChangesAsync();
+                return RedirectToAction(nameof(Index));
+            }
+            ViewData["UtilizadorId"] = new SelectList(_context.Utilizador, "Id", "Id", tecnica.UtilizadorId);
+            return View(tecnica);
+        }
+
+
+
+
+
+
+
 
         // GET: Tecnicas/Details/5
         public async Task<IActionResult> Details(int? id)
