@@ -22,7 +22,8 @@ namespace SIA.Controllers
         // GET: Utilizadors
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Utilizador.ToListAsync());
+            var applicationDbContext = _context.Utilizador.Include(u => u.Tecnica);
+            return View(await applicationDbContext.ToListAsync());
         }
 
         // GET: Utilizadors/Details/5
@@ -34,6 +35,7 @@ namespace SIA.Controllers
             }
 
             var utilizador = await _context.Utilizador
+                .Include(u => u.Tecnica)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (utilizador == null)
             {
@@ -46,6 +48,7 @@ namespace SIA.Controllers
         // GET: Utilizadors/Create
         public IActionResult Create()
         {
+            ViewData["TecnicaId"] = new SelectList(_context.Tecnica, "Id", "Id");
             return View();
         }
 
@@ -54,7 +57,7 @@ namespace SIA.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Email,Password,Estado,Funcao")] Utilizador utilizador)
+        public async Task<IActionResult> Create([Bind("Id,Nome,Email,Password,Estado,Funcao,TecnicaId")] Utilizador utilizador)
         {
             if (ModelState.IsValid)
             {
@@ -62,6 +65,7 @@ namespace SIA.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TecnicaId"] = new SelectList(_context.Tecnica, "Id", "Id", utilizador.TecnicaId);
             return View(utilizador);
         }
 
@@ -78,6 +82,7 @@ namespace SIA.Controllers
             {
                 return NotFound();
             }
+            ViewData["TecnicaId"] = new SelectList(_context.Tecnica, "Id", "Id", utilizador.TecnicaId);
             return View(utilizador);
         }
 
@@ -86,7 +91,7 @@ namespace SIA.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Email,Password,Estado,Funcao")] Utilizador utilizador)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Email,Password,Estado,Funcao,TecnicaId")] Utilizador utilizador)
         {
             if (id != utilizador.Id)
             {
@@ -113,6 +118,7 @@ namespace SIA.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
+            ViewData["TecnicaId"] = new SelectList(_context.Tecnica, "Id", "Id", utilizador.TecnicaId);
             return View(utilizador);
         }
 
@@ -125,6 +131,7 @@ namespace SIA.Controllers
             }
 
             var utilizador = await _context.Utilizador
+                .Include(u => u.Tecnica)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (utilizador == null)
             {

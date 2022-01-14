@@ -8,7 +8,6 @@ using Microsoft.EntityFrameworkCore;
 using SIA.Data;
 using SIA.Models;
 
-
 namespace SIA.Controllers
 {
     public class TecnicasController : Controller
@@ -23,38 +22,9 @@ namespace SIA.Controllers
         // GET: Tecnicas
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Tecnica.Include(t => t.Utilizador);
+            var applicationDbContext = _context.Tecnica.Include(t => t.Quadrante);
             return View(await applicationDbContext.ToListAsync());
         }
-
-
-        public IActionResult CreateMain()
-        {
-            ViewData["UtilizadorId"] = new SelectList(_context.Utilizador, "Id", "Id");
-            return View() ;
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> CreateMain([Bind("Id,Nome,UtilizadorId")] Tecnica tecnica, [Bind("Id,Nome,Pontuacao,Cor,TecnicaId")] Quadrante Quadrante2)
-        {
-            if (ModelState.IsValid)
-            {
-                _context.Add(tecnica);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["UtilizadorId"] = new SelectList(_context.Utilizador, "Id", "Id", tecnica.UtilizadorId);
-            return View(tecnica);
-        }
-
-
-
-
-
-
-
 
         // GET: Tecnicas/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -65,7 +35,7 @@ namespace SIA.Controllers
             }
 
             var tecnica = await _context.Tecnica
-                .Include(t => t.Utilizador)
+                .Include(t => t.Quadrante)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tecnica == null)
             {
@@ -78,7 +48,7 @@ namespace SIA.Controllers
         // GET: Tecnicas/Create
         public IActionResult Create()
         {
-            ViewData["UtilizadorId"] = new SelectList(_context.Utilizador, "Id", "Id");
+            ViewData["QuadranteId"] = new SelectList(_context.Quadrante, "Id", "Id");
             return View();
         }
 
@@ -87,7 +57,7 @@ namespace SIA.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,UtilizadorId")] Tecnica tecnica)
+        public async Task<IActionResult> Create([Bind("Id,Nome,QuadranteId")] Tecnica tecnica)
         {
             if (ModelState.IsValid)
             {
@@ -95,7 +65,7 @@ namespace SIA.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UtilizadorId"] = new SelectList(_context.Utilizador, "Id", "Id", tecnica.UtilizadorId);
+            ViewData["QuadranteId"] = new SelectList(_context.Quadrante, "Id", "Id", tecnica.QuadranteId);
             return View(tecnica);
         }
 
@@ -112,7 +82,7 @@ namespace SIA.Controllers
             {
                 return NotFound();
             }
-            ViewData["UtilizadorId"] = new SelectList(_context.Utilizador, "Id", "Id", tecnica.UtilizadorId);
+            ViewData["QuadranteId"] = new SelectList(_context.Quadrante, "Id", "Id", tecnica.QuadranteId);
             return View(tecnica);
         }
 
@@ -121,7 +91,7 @@ namespace SIA.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,UtilizadorId")] Tecnica tecnica)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,QuadranteId")] Tecnica tecnica)
         {
             if (id != tecnica.Id)
             {
@@ -148,7 +118,7 @@ namespace SIA.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["UtilizadorId"] = new SelectList(_context.Utilizador, "Id", "Id", tecnica.UtilizadorId);
+            ViewData["QuadranteId"] = new SelectList(_context.Quadrante, "Id", "Id", tecnica.QuadranteId);
             return View(tecnica);
         }
 
@@ -161,7 +131,7 @@ namespace SIA.Controllers
             }
 
             var tecnica = await _context.Tecnica
-                .Include(t => t.Utilizador)
+                .Include(t => t.Quadrante)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (tecnica == null)
             {

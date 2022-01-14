@@ -22,8 +22,7 @@ namespace SIA.Controllers
         // GET: Quadrantes
         public async Task<IActionResult> Index()
         {
-            var applicationDbContext = _context.Quadrante.Include(q => q.Tecnica);
-            return View(await applicationDbContext.ToListAsync());
+            return View(await _context.Quadrante.ToListAsync());
         }
 
         // GET: Quadrantes/Details/5
@@ -35,7 +34,6 @@ namespace SIA.Controllers
             }
 
             var quadrante = await _context.Quadrante
-                .Include(q => q.Tecnica)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (quadrante == null)
             {
@@ -48,7 +46,6 @@ namespace SIA.Controllers
         // GET: Quadrantes/Create
         public IActionResult Create()
         {
-            ViewData["TecnicaId"] = new SelectList(_context.Tecnica, "Id", "Id");
             return View();
         }
 
@@ -57,7 +54,7 @@ namespace SIA.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Nome,Pontuacao,Cor,TecnicaId")] Quadrante quadrante)
+        public async Task<IActionResult> Create([Bind("Id,GrupoId,Nome,Pontuacao,Cor")] Quadrante quadrante)
         {
             if (ModelState.IsValid)
             {
@@ -65,7 +62,6 @@ namespace SIA.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TecnicaId"] = new SelectList(_context.Tecnica, "Id", "Id", quadrante.TecnicaId);
             return View(quadrante);
         }
 
@@ -82,7 +78,6 @@ namespace SIA.Controllers
             {
                 return NotFound();
             }
-            ViewData["TecnicaId"] = new SelectList(_context.Tecnica, "Id", "Id", quadrante.TecnicaId);
             return View(quadrante);
         }
 
@@ -91,7 +86,7 @@ namespace SIA.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Nome,Pontuacao,Cor,TecnicaId")] Quadrante quadrante)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,GrupoId,Nome,Pontuacao,Cor")] Quadrante quadrante)
         {
             if (id != quadrante.Id)
             {
@@ -118,7 +113,6 @@ namespace SIA.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["TecnicaId"] = new SelectList(_context.Tecnica, "Id", "Id", quadrante.TecnicaId);
             return View(quadrante);
         }
 
@@ -131,7 +125,6 @@ namespace SIA.Controllers
             }
 
             var quadrante = await _context.Quadrante
-                .Include(q => q.Tecnica)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (quadrante == null)
             {

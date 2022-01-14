@@ -229,18 +229,16 @@ namespace SIA.Migrations
                     b.Property<string>("Cor")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("GrupoId")
+                        .HasColumnType("int");
+
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Pontuacao")
                         .HasColumnType("int");
 
-                    b.Property<int>("TecnicaId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("TecnicaId");
 
                     b.ToTable("Quadrante");
                 });
@@ -255,12 +253,12 @@ namespace SIA.Migrations
                     b.Property<string>("Nome")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("UtilizadorId")
+                    b.Property<int>("QuadranteId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UtilizadorId");
+                    b.HasIndex("QuadranteId");
 
                     b.ToTable("Tecnica");
                 });
@@ -287,7 +285,12 @@ namespace SIA.Migrations
                     b.Property<string>("Password")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TecnicaId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("TecnicaId");
 
                     b.ToTable("Utilizador");
                 });
@@ -343,10 +346,21 @@ namespace SIA.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("SIA.Models.Quadrante", b =>
+            modelBuilder.Entity("SIA.Models.Tecnica", b =>
+                {
+                    b.HasOne("SIA.Models.Quadrante", "Quadrante")
+                        .WithMany("Tecnicas")
+                        .HasForeignKey("QuadranteId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Quadrante");
+                });
+
+            modelBuilder.Entity("SIA.Models.Utilizador", b =>
                 {
                     b.HasOne("SIA.Models.Tecnica", "Tecnica")
-                        .WithMany("QuadrantesL")
+                        .WithMany("Utilizadores")
                         .HasForeignKey("TecnicaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -354,25 +368,14 @@ namespace SIA.Migrations
                     b.Navigation("Tecnica");
                 });
 
-            modelBuilder.Entity("SIA.Models.Tecnica", b =>
+            modelBuilder.Entity("SIA.Models.Quadrante", b =>
                 {
-                    b.HasOne("SIA.Models.Utilizador", "Utilizador")
-                        .WithMany("TecnicaL")
-                        .HasForeignKey("UtilizadorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Utilizador");
+                    b.Navigation("Tecnicas");
                 });
 
             modelBuilder.Entity("SIA.Models.Tecnica", b =>
                 {
-                    b.Navigation("QuadrantesL");
-                });
-
-            modelBuilder.Entity("SIA.Models.Utilizador", b =>
-                {
-                    b.Navigation("TecnicaL");
+                    b.Navigation("Utilizadores");
                 });
 #pragma warning restore 612, 618
         }

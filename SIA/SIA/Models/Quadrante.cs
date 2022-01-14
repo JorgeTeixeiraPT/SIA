@@ -10,12 +10,11 @@ namespace SIA.Models
     {
         [Key]
         public int Id { get; set; }
+        public int GrupoId { get; set; }
         public string Nome { get; set; } = "Escreva neste quadrante";
         public int Pontuacao { get; set; } = 0;
         public string Cor { get; set; } = "Branco";
 
-        public int TecnicaId { get; set; }
-
-        public Tecnica Tecnica { get; set; }
+        public ICollection<Tecnica> Tecnicas { get; set; }
     }
 }

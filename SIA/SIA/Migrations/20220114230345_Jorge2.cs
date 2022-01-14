@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SIA.Migrations
 {
-    public partial class asdf : Migration
+    public partial class Jorge2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -47,20 +47,19 @@ namespace SIA.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Utilizador",
+                name: "Quadrante",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
+                    GrupoId = table.Column<int>(type: "int", nullable: false),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Estado = table.Column<bool>(type: "bit", nullable: false),
-                    Funcao = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    Pontuacao = table.Column<int>(type: "int", nullable: false),
+                    Cor = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Utilizador", x => x.Id);
+                    table.PrimaryKey("PK_Quadrante", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(
@@ -176,35 +175,37 @@ namespace SIA.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    UtilizadorId = table.Column<int>(type: "int", nullable: false)
+                    QuadranteId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Tecnica", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Tecnica_Utilizador_UtilizadorId",
-                        column: x => x.UtilizadorId,
-                        principalTable: "Utilizador",
+                        name: "FK_Tecnica_Quadrante_QuadranteId",
+                        column: x => x.QuadranteId,
+                        principalTable: "Quadrante",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "Quadrante",
+                name: "Utilizador",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Pontuacao = table.Column<int>(type: "int", nullable: false),
-                    Cor = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Email = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Estado = table.Column<bool>(type: "bit", nullable: false),
+                    Funcao = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     TecnicaId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Quadrante", x => x.Id);
+                    table.PrimaryKey("PK_Utilizador", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Quadrante_Tecnica_TecnicaId",
+                        name: "FK_Utilizador_Tecnica_TecnicaId",
                         column: x => x.TecnicaId,
                         principalTable: "Tecnica",
                         principalColumn: "Id",
@@ -251,14 +252,14 @@ namespace SIA.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Quadrante_TecnicaId",
-                table: "Quadrante",
-                column: "TecnicaId");
+                name: "IX_Tecnica_QuadranteId",
+                table: "Tecnica",
+                column: "QuadranteId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Tecnica_UtilizadorId",
-                table: "Tecnica",
-                column: "UtilizadorId");
+                name: "IX_Utilizador_TecnicaId",
+                table: "Utilizador",
+                column: "TecnicaId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -279,7 +280,7 @@ namespace SIA.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Quadrante");
+                name: "Utilizador");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
@@ -291,7 +292,7 @@ namespace SIA.Migrations
                 name: "Tecnica");
 
             migrationBuilder.DropTable(
-                name: "Utilizador");
+                name: "Quadrante");
         }
     }
 }

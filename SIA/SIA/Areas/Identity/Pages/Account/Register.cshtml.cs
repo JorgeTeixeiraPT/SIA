@@ -99,7 +99,26 @@ namespace SIA.Areas.Identity.Pages.Account
 
                     await _userManager.AddToRoleAsync(user, Input.Funcao= "Client");//Client ou SuperAdmin
 
-                    Utilizador newUtilizador = new Utilizador {Nome = user.UserName, Email = user.Email, Estado = true, Funcao = Input.Funcao, Password=user.PasswordHash };
+
+
+                    Quadrante Quadrante1 = new Quadrante { Nome = "Por inserir", Pontuacao = 0, Cor = "Branco",GrupoId= 1 };
+                    _dbcontext.Quadrante.Add(Quadrante1);
+                    await _dbcontext.SaveChangesAsync();
+                    Quadrante Quadrante2 = new Quadrante { Nome = "Por inserir", Pontuacao = 0, Cor = "Branco", GrupoId = Quadrante1.GrupoId };
+                    _dbcontext.Quadrante.Add(Quadrante2);
+                    await _dbcontext.SaveChangesAsync();
+                    Quadrante Quadrante3 = new Quadrante { Nome = "Por inserir", Pontuacao = 0, Cor = "Branco", GrupoId = Quadrante1.GrupoId };
+                    _dbcontext.Quadrante.Add(Quadrante3);
+                    await _dbcontext.SaveChangesAsync();
+                    Quadrante Quadrante4 = new Quadrante { Nome = "Por inserir", Pontuacao = 0, Cor = "Branco", GrupoId = Quadrante1.GrupoId };
+                    _dbcontext.Quadrante.Add(Quadrante4);
+                    await _dbcontext.SaveChangesAsync();
+
+                    Tecnica newTecnica = new Tecnica { Nome = "Inserir nome", QuadranteId =Quadrante1.GrupoId};
+                    _dbcontext.Tecnica.Add(newTecnica);
+                    await _dbcontext.SaveChangesAsync();
+
+                    Utilizador newUtilizador = new Utilizador {Nome = user.UserName, Email = user.Email, Estado = true, Funcao = Input.Funcao, Password=user.PasswordHash,TecnicaId=newTecnica.Id };
                     _dbcontext.Utilizador.Add(newUtilizador);
                     await _dbcontext.SaveChangesAsync();
 
